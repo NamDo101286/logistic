@@ -12,13 +12,13 @@ from sklearn import metrics
 
 df = pd.read_csv("credit access.csv", encoding='latin-1')
 
-st.title("Hồi quy tuyến tính")
-st.write("## Dự báo khả năng tiếp cận vốn tín dụng của nông hộ")
+st.title("Nhóm 7 - Customer Credit Access Evaluation App")
+st.write("## Dự báo khả năng tiếp cận vốn tín dụng của khách hàng")
 
 uploaded_file = st.file_uploader("Choose a file", type=['csv'])
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file, encoding='latin-1')
-    df.to_csv("data.csv", index = False)
+    #df.to_csv("data.csv", index = False)
 
 X = df.drop(columns=['y'])
 y = df['y']
@@ -50,9 +50,10 @@ if choice == 'Mục tiêu của mô hình':
     ###### Mô hình được xây dựng để dự báo khả năng tiếp cận vốn tín dụng của nông hộ dựa trên các biến đặc điểm chủ hộ, điều kiện của nông hộ.
     """)  
     st.write("""###### Mô hình sử dụng thuật toán LogisticRegression""")
-    st.image("ham_spam.jpg")
-    st.image("LogReg_1.png")
-    st.image("motabien.png")
+    st.write("""###### Chương trình khuyến mãi""")
+    st.image("chovaytieudung.jpg")
+    #st.image("LogReg_1.png")
+    #st.image("motabien.png")
 
 elif choice == 'Xây dựng mô hình':
     st.subheader("Xây dựng mô hình")
@@ -88,18 +89,13 @@ elif choice == 'Sử dụng mô hình để dự báo':
             # st.write(lines.columns)
             flag = True       
     if type=="Input":        
-        git = st.number_input('Insert y')
-        DT = st.number_input('Insert DT')
-        TN = st.number_input('Insert TN')
-        SPT = st.number_input('Insert SPT')
-        GTC = st.number_input('Insert GTC')
-        GD = st.number_input('Insert GD')
-        TCH = st.number_input('Insert TCH')
-        GT = st.number_input('Insert GT')
-        DV = st.number_input('Insert DV')
-        VPCT = st.number_input('Insert VPCT')
-        LS = st.number_input('Insert LS')
-        lines={'y':[git],'DT':[DT],'TN':[TN],'SPT':[SPT],'GTC':[GTC],'GD':[GD],'TCH':[TCH],'GT':[GT],'DV':[DV],'VPCT':[VPCT],'LS':[LS]}
+        git = st.number_input('Khai báo giá trị')
+        TN = st.number_input('Nhập Thu nhập')
+        GTC = st.number_input('Nhập Giá trị thế chấp')
+        TCH = st.number_input('Nhập tuổi chủ hộ')
+        VPCT = st.number_input('Đã vay tt phi chính thức?')
+        LS = st.number_input('Đã từng vay')
+        lines={'y':[git],'TN':[TN],'GTC':[GTC],'TCH':[TCH],'VPCT':[VPCT],'LS':[LS]}
         lines=pd.DataFrame(lines)
         st.dataframe(lines)
         flag = True
